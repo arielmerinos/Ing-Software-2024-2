@@ -5,6 +5,7 @@ alumno_blueprint = Blueprint('alumno', __name__, url_prefix='/alumno')
 
 @alumno_blueprint.route('/') #localhost:5000/alumno/
 def ver_alumnos():
+
     return "select * from alumno"
 
 #responde a localhost:5000/alumno/id/1

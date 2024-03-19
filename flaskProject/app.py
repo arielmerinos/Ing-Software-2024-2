@@ -1,11 +1,10 @@
 from flask import Flask, render_template
-
 from alchemyClasses import db
 from contollers.PrimerControlador import mi_primer_blueprint
 from contollers.ControllerAlumno import alumno_blueprint
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://ferfong:Develooper123!@localhost:3306/ing_soft'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://ferfong:Develooper123!@localhost:3306/ing_soft'
 app.config.from_mapping(
     SECRET_KEY='dev'
 )
@@ -17,5 +16,10 @@ app.register_blueprint(alumno_blueprint)
 def hello_world():  # put application's code here
     return render_template('index.html')
 
+
+# Initialize the database
+with app.app_context():
+    db.create_all()
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
